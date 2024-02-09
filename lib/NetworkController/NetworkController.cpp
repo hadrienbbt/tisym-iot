@@ -16,24 +16,10 @@ NetworkController::NetworkController(const char *ssid, const char *password, con
   this->mqtt_port = mqtt_port;
 }
 
-void NetworkController::setup(const bool sleep)
+void NetworkController::setup()
 {
   connectWiFi();
   connectMQTT();
-
-  if (sleep)
-  {
-    publishButtonPressed();
-    delay(1000);
-    Serial.println("\nGoing to sleep...\n");
-#ifdef ESP32S3
-    delay(1000);
-    esp_light_sleep_start();
-#endif
-#ifdef ESP8266
-    ESP.deepSleep(0);
-#endif
-  }
 }
 
 void NetworkController::loop()
@@ -104,16 +90,16 @@ void NetworkController::connectMQTT()
   Serial.println("MQTT Server Connected:");
 }
 
-void NetworkController::publishButtonPressed()
+void NetworkController::publishButtonPressed(int pin)
 {
   String deviceType = DEVICETYPE;
-  mqtt.publish("hue", "{\"type\":\"" + deviceType + "\",\"action\":\"pressed\"}");
+  mqtt.publish("hue", "{\"type\":\"" + deviceType + "\",\"action\":\"pressed\",\"payload\":{\"pin\":" + String(pin) + "}}");
   Serial.println("Press published");
 }
 
-void NetworkController::publishButtonLongPressed()
+void NetworkController::publishButtonLongPressed(int pin)
 {
   String deviceType = DEVICETYPE;
-  mqtt.publish("hue", "{\"type\":\"" + deviceType + "\",\"action\":\"long_pressed\"}");
+  mqtt.publish("hue", "{\"type\":\"" + deviceType + "\",\"action\":\"long_pressed\",\"payload\":{\"pin\":" + String(pin) + "}}");
   Serial.println("Long press published");
 }

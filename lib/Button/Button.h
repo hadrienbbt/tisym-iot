@@ -7,7 +7,6 @@ class ButtonCallbacks;
 
 class Button
 {
-  int pin;
   ButtonCallbacks *m_pButtonCallbacks;
   bool isPressed;
   bool isReleased;
@@ -22,10 +21,10 @@ class Button
   unsigned long longPressDelay;
 
 public:
+  int pin;
   Button(int pin);
-  void setup();
+  void setup(ButtonCallbacks *pCallbacks);
   void loop();
-  void setCallbacks(ButtonCallbacks *pCallbacks);
   bool getIsPressed();
   bool getIsReleased();
   bool getIsHeld();

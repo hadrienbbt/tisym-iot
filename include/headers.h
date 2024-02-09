@@ -35,3 +35,26 @@
 #ifndef MQTT_PWD
 #define MQTT_PWD "MQTT_PWD"
 #endif
+#ifndef SLEEP
+#ifdef ESP32S3
+#define SLEEP false
+#endif
+#ifdef ESP8266
+#define SLEEP true
+#endif
+#endif
+#ifndef BUTTON_PIN_BITMASK
+#define BUTTON_PIN_BITMASK 0x0000000000000000
+#endif
+#ifndef BTN_0
+#define BTN_0 10
+#endif
+#ifndef BTN_1
+#define BTN_1 11
+#endif
+#ifndef BTN_2
+#define BTN_2 12
+#endif
+#ifndef BTN_3
+#define BTN_3 13
+#endif

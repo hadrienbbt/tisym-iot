@@ -14,9 +14,10 @@ Button::Button(int pin)
   this->longPressDelay = 1000;
 }
 
-void Button::setup()
+void Button::setup(ButtonCallbacks *pCallbacks)
 {
   pinMode(this->pin, INPUT_PULLUP);
+  this->m_pButtonCallbacks = pCallbacks;
 }
 
 // listen for long press and if the press is released before the long press delay, call onPressed method instead. don't call 2 at the same time
@@ -58,11 +59,6 @@ void Button::loop()
     else
       this->m_pButtonCallbacks->onPressed(this);
   }
-}
-
-void Button::setCallbacks(ButtonCallbacks *pCallbacks)
-{
-  this->m_pButtonCallbacks = pCallbacks;
 }
 
 bool Button::getIsPressed()
