@@ -12,10 +12,11 @@ ButtonsController::ButtonsController(const uint8_t btn_0, const uint8_t btn_1, c
 void ButtonsController::setup(NetworkController *p_network)
 {
   this->p_network = p_network;
-  p_btn0->setup(new SwitchButtonCallbacks(p_network));
-  p_btn1->setup(new SwitchButtonCallbacks(p_network));
-  p_btn2->setup(new SwitchButtonCallbacks(p_network));
-  p_btn3->setup(new SwitchButtonCallbacks(p_network));
+  SwitchButtonCallbacks *p_switchButtonCallbacks = new SwitchButtonCallbacks(p_network);
+  p_btn0->setup(p_switchButtonCallbacks);
+  p_btn1->setup(p_switchButtonCallbacks);
+  p_btn2->setup(p_switchButtonCallbacks);
+  p_btn3->setup(p_switchButtonCallbacks);
   Serial.println("Switch Button ready");
 }
 
