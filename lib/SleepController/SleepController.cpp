@@ -2,20 +2,15 @@
 
 SleepController::SleepController(const uint64_t mask)
 {
-  p_networkController = nullptr;
   this->mask = mask;
 }
 
-void SleepController::setup(NetworkController *pNetworkController)
+void SleepController::setup(NetworkController *p_networkController)
 {
-  p_networkController = pNetworkController;
-
   uint64_t GPIO_reason_pow = esp_sleep_get_ext1_wakeup_status();
   double GPIO_reason = log(GPIO_reason_pow) / log(2);
   if (GPIO_reason > 9)
   {
-    p_networkController->setup();
-
     Serial.println("\nGPIO that triggered the wake up: GPIO ");
     Serial.println(GPIO_reason, 0);
     p_networkController->publishButtonPressed(GPIO_reason);
