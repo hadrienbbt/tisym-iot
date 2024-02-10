@@ -84,7 +84,7 @@ void NetworkController::connectMQTT()
   {
     Serial.println("Connection Failed! Waiting...");
     Serial.print(".");
-    delay(5000);
+    delay(1000);
   }
 
   Serial.println("MQTT Server Connected:");
@@ -93,13 +93,13 @@ void NetworkController::connectMQTT()
 void NetworkController::publishButtonPressed(int pin)
 {
   String deviceType = DEVICETYPE;
-  mqtt.publish("hue", "{\"type\":\"" + deviceType + "\",\"action\":\"pressed\",\"payload\":{\"pin\":" + String(pin) + "}}");
+  mqtt.publish("hue", "{\"action\":\"press\",\"payload\":{\"deviceType\":\"" + deviceType + "\",\"pin\":" + String(pin) + "}}");
   Serial.println("Press published");
 }
 
 void NetworkController::publishButtonLongPressed(int pin)
 {
   String deviceType = DEVICETYPE;
-  mqtt.publish("hue", "{\"type\":\"" + deviceType + "\",\"action\":\"long_pressed\",\"payload\":{\"pin\":" + String(pin) + "}}");
+  mqtt.publish("hue", "{\"action\":\"long_press\",\"payload\":{\"deviceType\":\"" + deviceType + "\",\"pin\":" + String(pin) + "}}");
   Serial.println("Long press published");
 }
