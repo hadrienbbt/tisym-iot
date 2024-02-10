@@ -1,6 +1,6 @@
-#include <ControlsManager.h>
+#include <ButtonsController.h>
 
-ControlsManager::ControlsManager(const uint8_t btn_0, const uint8_t btn_1, const uint8_t btn_2, const uint8_t btn_3)
+ButtonsController::ButtonsController(const uint8_t btn_0, const uint8_t btn_1, const uint8_t btn_2, const uint8_t btn_3)
 {
   p_networkController = nullptr;
   p_btn0 = new Button(btn_0);
@@ -9,7 +9,7 @@ ControlsManager::ControlsManager(const uint8_t btn_0, const uint8_t btn_1, const
   p_btn3 = new Button(btn_3);
 }
 
-void ControlsManager::setup(NetworkController *pNetworkController)
+void ButtonsController::setup(NetworkController *pNetworkController)
 {
   p_networkController = pNetworkController;
   p_btn0->setup(new SwitchButtonCallbacks(p_networkController));
@@ -19,7 +19,7 @@ void ControlsManager::setup(NetworkController *pNetworkController)
   Serial.println("Switch Button ready");
 }
 
-void ControlsManager::loop()
+void ButtonsController::loop()
 {
   p_btn0->loop();
   p_btn1->loop();

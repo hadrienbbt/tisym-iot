@@ -1,10 +1,10 @@
 #include <NetworkController.h>
 #include <Button.h>
 
-#ifndef CONTROLS_MANAGER_H
-#define CONTROLS_MANAGER_H
+#ifndef BUTTONS_CONTROLLER_H
+#define BUTTONS_CONTROLLER_H
 
-class ControlsManager
+class ButtonsController
 {
 public:
   NetworkController *p_networkController;
@@ -13,7 +13,7 @@ public:
   Button *p_btn2;
   Button *p_btn3;
 
-  ControlsManager(const uint8_t btn_0, const uint8_t btn_1, const uint8_t btn_2, const uint8_t btn_3);
+  ButtonsController(const uint8_t btn_0, const uint8_t btn_1, const uint8_t btn_2, const uint8_t btn_3);
   void setup(NetworkController *p_networkController);
   void loop();
 };
