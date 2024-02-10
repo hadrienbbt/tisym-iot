@@ -6,23 +6,23 @@
 
 const uint8_t bssid[] = WIFI_BSSID;
 
-NetworkController *p_networkController = new NetworkController(WIFI_SSID, WIFI_PWD, GATEWAY, SUBNET, DNS, IP, bssid, WIFI_CHANNEL, MQTT_SERVER, MQTT_USER, MQTT_PWD, MQTT_PORT);
-SleepController *p_sleepController = new SleepController(BUTTON_PIN_BITMASK);
-ButtonsController *p_buttonsController = new ButtonsController(BTN_0, BTN_1, BTN_2, BTN_3);
+NetworkController *p_network = new NetworkController(WIFI_SSID, WIFI_PWD, GATEWAY, SUBNET, DNS, IP, bssid, WIFI_CHANNEL, MQTT_SERVER, MQTT_USER, MQTT_PWD, MQTT_PORT);
+SleepController *p_sleep = new SleepController(BUTTON_PIN_BITMASK);
+ButtonsController *p_buttons = new ButtonsController(BTN_0, BTN_1, BTN_2, BTN_3);
 
 void setup()
 {
   Serial.begin(115200);
-  p_networkController->setup();
+  p_network->setup();
   if (SLEEP)
   {
-    p_sleepController->setup(p_networkController);
+    p_sleep->setup(p_network);
   }
-  p_buttonsController->setup(p_networkController);
+  p_buttons->setup(p_network);
 }
 
 void loop()
 {
-  p_networkController->loop();
-  p_buttonsController->loop();
+  p_network->loop();
+  p_buttons->loop();
 }
