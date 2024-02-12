@@ -15,6 +15,9 @@ ButtonsController *p_buttons = new ButtonsController(BTN_0, BTN_1, BTN_2, BTN_3,
 void setup()
 {
   Serial.begin(115200);
+  pinMode(PROG_LED, OUTPUT);
+  digitalWrite(PROG_LED, LOW);
+
   p_network->setup();
   if (SLEEP)
   {
@@ -22,6 +25,7 @@ void setup()
   }
   p_ota->setup();
   p_buttons->setup(p_network, p_sleep);
+  digitalWrite(PROG_LED, HIGH);
 }
 
 void loop()

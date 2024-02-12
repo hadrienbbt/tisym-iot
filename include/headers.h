@@ -61,3 +61,6 @@
 #ifndef PROG_BTN
 #define PROG_BTN 9
 #endif
+#ifndef PROG_LED
+#define PROG_LED 8
+#endif
