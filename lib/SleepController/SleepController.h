@@ -10,6 +10,8 @@ class SleepController
 public:
   SleepController(const uint64_t mask);
   void setup(NetworkController *p_networkController);
+
+  void sleep();
 };
 
 #endif

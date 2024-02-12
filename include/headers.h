@@ -58,3 +58,6 @@
 #ifndef BTN_3
 #define BTN_3 13
 #endif
+#ifndef PROG_BTN
+#define PROG_BTN 9
+#endif
