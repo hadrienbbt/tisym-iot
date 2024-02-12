@@ -6,7 +6,7 @@
 
 const uint8_t bssid[] = WIFI_BSSID;
 
-NetworkController *p_network = new NetworkController(WIFI_SSID, WIFI_PWD, GATEWAY, SUBNET, DNS, IP, bssid, WIFI_CHANNEL, MQTT_SERVER, MQTT_USER, MQTT_PWD, MQTT_PORT);
+NetworkController *p_network = new NetworkController(WIFI_SSID, WIFI_PWD, GATEWAY, SUBNET, DNS, STATIC_IP, bssid, WIFI_CHANNEL, MQTT_SERVER, MQTT_USER, MQTT_PWD, MQTT_PORT);
 SleepController *p_sleep = new SleepController(BUTTON_PIN_BITMASK);
 ButtonsController *p_buttons = new ButtonsController(BTN_0, BTN_1, BTN_2, BTN_3);
 

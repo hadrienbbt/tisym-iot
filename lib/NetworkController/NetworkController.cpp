@@ -36,7 +36,7 @@ void NetworkController::connectWiFi()
   Serial.println(password);
   Serial.print("WIFI_CHANNEL: ");
   Serial.println(channel);
-  Serial.print("IP: ");
+  Serial.print("STATIC IP: ");
   Serial.println(ip);
   Serial.print("GATEWAY: ");
   Serial.println(gateway);

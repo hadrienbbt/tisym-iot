@@ -14,8 +14,8 @@
 #ifndef DNS
 #define DNS "192.168.1.1"
 #endif
-#ifndef IP
-#define IP "192.168.1.100"
+#ifndef STATIC_IP
+#define STATIC_IP "192.168.1.100"
 #endif
 #ifndef WIFI_BSSID
 #define WIFI_BSSID "{0x58, 0x1D, 0xD8, 0x05, 0xD5, 0xE8}"
