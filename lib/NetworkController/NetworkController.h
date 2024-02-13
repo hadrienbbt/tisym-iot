@@ -1,4 +1,4 @@
-#ifdef ESP32S3
+#ifdef ESP32
 #include <WiFi.h>
 #endif
 #ifdef ESP8266

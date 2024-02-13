@@ -98,7 +98,7 @@ int Button::getState()
 
 void ButtonCallbacks::onPressed(Button *pButton)
 {
-#ifdef ESP32S3
+#ifdef ESP32
   log_d("ButtonCallbacks", ">> onPressed(): Default");
   log_d("ButtonCallbacks", "Button: %s", Button::pin.c_str());
   log_d("ButtonCallbacks", "<< onPressed()");
@@ -107,7 +107,7 @@ void ButtonCallbacks::onPressed(Button *pButton)
 
 void ButtonCallbacks::onLongPressed(Button *pButton)
 {
-#ifdef ESP32S3
+#ifdef ESP32
   log_d("ButtonCallbacks", ">> onLongPressed(): Default");
   log_d("ButtonCallbacks", "Button: %s", Button::pin.c_str());
   log_d("ButtonCallbacks", "<< onLongPressed()");

@@ -32,7 +32,7 @@ void SleepController::setup(NetworkController *p_network)
 void SleepController::sleep()
 {
   Serial.println("Going to sleep...\n");
-#ifdef ESP32S3
+#ifdef ESP32
   esp_sleep_enable_ext1_wakeup(mask, ESP_EXT1_WAKEUP_ANY_HIGH);
   esp_deep_sleep_start();
 #endif

@@ -36,7 +36,7 @@
 #define MQTT_PWD "MQTT_PWD"
 #endif
 #ifndef SLEEP
-#ifdef ESP32S3
+#ifdef ESP32
 #define SLEEP false
 #endif
 #ifdef ESP8266
