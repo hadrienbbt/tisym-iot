@@ -62,9 +62,9 @@ void NetworkController::connectWiFi()
   Serial.println("\n...");
   while (WiFi.waitForConnectResult() != WL_CONNECTED)
   {
-    Serial.println("Connection Failed! Rebooting...");
-    delay(5000);
-    ESP.restart();
+    Serial.println("Connection Failed! Waiting...");
+    Serial.print(".");
+    delay(1000);
   }
 
   Serial.println("WiFi Connected\n");
