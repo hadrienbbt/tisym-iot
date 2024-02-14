@@ -15,7 +15,7 @@ public:
   Button *p_btn3;
   Button *p_prog_btn;
 
-  ButtonsController(const uint8_t btn_0, const uint8_t btn_1, const uint8_t btn_2, const uint8_t btn_3, const uint64_t prog_btn);
+  ButtonsController(const uint8_t btn_0, const uint8_t btn_1, const uint8_t btn_2, const uint8_t btn_3, const uint8_t prog_btn);
   void setup(NetworkController *p_network, SleepController *p_sleep);
   void loop();
 };

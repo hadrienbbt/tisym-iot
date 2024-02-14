@@ -1,6 +1,6 @@
 #include <ButtonsController.h>
 
-ButtonsController::ButtonsController(const uint8_t btn_0, const uint8_t btn_1, const uint8_t btn_2, const uint8_t btn_3, const uint64_t prog_btn)
+ButtonsController::ButtonsController(const uint8_t btn_0, const uint8_t btn_1, const uint8_t btn_2, const uint8_t btn_3, const uint8_t prog_btn)
 {
   p_network = nullptr;
   p_btn0 = new Button(btn_0);
