@@ -93,13 +93,21 @@ void NetworkController::connectMQTT()
 void NetworkController::publishButtonPressed(int pin)
 {
   String deviceType = DEVICETYPE;
-  mqtt.publish("hue", "{\"action\":\"press\",\"payload\":{\"deviceType\":\"" + deviceType + "\",\"pin\":" + String(pin) + "}}");
+  String message = "{\"action\":\"press\",\"payload\":{\"deviceType\":\"" + deviceType + "\",\"pin\":" + String(pin) + "}}";
+  while (!mqtt.publish("hue", message, true, 1))
+  {
+    Serial.print(".");
+  }
   Serial.println("Press published");
 }
 
 void NetworkController::publishButtonLongPressed(int pin)
 {
   String deviceType = DEVICETYPE;
-  mqtt.publish("hue", "{\"action\":\"long_press\",\"payload\":{\"deviceType\":\"" + deviceType + "\",\"pin\":" + String(pin) + "}}");
+  String message = "{\"action\":\"long_press\",\"payload\":{\"deviceType\":\"" + deviceType + "\",\"pin\":" + String(pin) + "}}";
+  while (!mqtt.publish("hue", message, true, 1))
+  {
+    Serial.print(".");
+  }
   Serial.println("Long press published");
 }
