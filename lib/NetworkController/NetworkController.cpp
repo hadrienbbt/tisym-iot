@@ -76,8 +76,11 @@ void NetworkController::connectWiFi()
   Serial.println("WiFi Connected\n");
   Serial.println("IP address: ");
   Serial.print(WiFi.localIP().toString().c_str());
+  Serial.println("\nDevice MAC address: ");
+  Serial.print(WiFi.macAddress());
   Serial.println("\nRouter MAC address: ");
   Serial.print(WiFi.BSSIDstr());
+
   Serial.println("\n");
 }
 
@@ -122,4 +125,19 @@ void NetworkController::publishButtonLongPressed(int pin)
     Serial.print(".");
   }
   Serial.println("Long press published");
+}
+
+void NetworkController::disconnect()
+{
+  Serial.println("Disconnecting from MQTT...");
+  while (!mqtt.disconnect())
+  {
+    Serial.print(".");
+  }
+  Serial.println("Disconnecting from WiFi...");
+  while (!WiFi.disconnect())
+  {
+    Serial.print(".");
+  }
+  Serial.println("Disconnected");
 }

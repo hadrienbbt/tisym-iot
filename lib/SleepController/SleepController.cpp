@@ -2,6 +2,7 @@
 
 SleepController::SleepController(const uint64_t mask, const uint8_t btn_0, const uint8_t btn_1, const uint8_t btn_2, const uint8_t btn_3, const uint8_t prog_btn)
 {
+  p_network = nullptr;
   this->mask = mask;
   this->btn_0 = btn_0;
   this->btn_1 = btn_1;
@@ -12,13 +13,14 @@ SleepController::SleepController(const uint64_t mask, const uint8_t btn_0, const
 
 void SleepController::setup(NetworkController *p_network)
 {
+  this->p_network = p_network;
   uint64_t GPIO_reason_pow = esp_sleep_get_ext1_wakeup_status();
   double GPIO_reason = log(GPIO_reason_pow) / log(2);
   if (GPIO_reason == btn_0 || GPIO_reason == btn_1 || GPIO_reason == btn_2 || GPIO_reason == btn_3)
   {
     Serial.println("\nGPIO that triggered the wake up: GPIO ");
     Serial.println(GPIO_reason, 0);
-    p_network->publishButtonPressed(GPIO_reason);
+    this->p_network->publishButtonPressed(GPIO_reason);
     sleep();
   }
   if (GPIO_reason == prog_btn)
@@ -33,6 +35,7 @@ void SleepController::setup(NetworkController *p_network)
 
 void SleepController::sleep()
 {
+  p_network->disconnect();
   Serial.println("Going to sleep...\n");
 #ifdef ESP32
   esp_sleep_enable_ext1_wakeup(mask, ESP_EXT1_WAKEUP_ANY_HIGH);

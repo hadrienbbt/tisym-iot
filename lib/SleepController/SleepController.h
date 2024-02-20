@@ -5,6 +5,7 @@
 
 class SleepController
 {
+  NetworkController *p_network;
   uint64_t mask;
   uint8_t btn_0;
   uint8_t btn_1;
