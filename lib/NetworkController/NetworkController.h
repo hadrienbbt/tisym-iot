@@ -23,6 +23,7 @@ class NetworkController
   const char *mqtt_user;
   const char *mqtt_password;
   int mqtt_port;
+  uint8_t prog_led;
 
   MQTTClient mqtt;
   WiFiClient wifi;
@@ -31,7 +32,7 @@ class NetworkController
   void connectMQTT();
 
 public:
-  NetworkController(const char *ssid, const char *password, const char *gateway, const char *subnet, const char *dns, const char *ip, const uint8_t *bssid, int channel, const char *mqtt_broker, const char *mqtt_user, const char *mqtt_password, int mqtt_port);
+  NetworkController(const char *ssid, const char *password, const char *gateway, const char *subnet, const char *dns, const char *ip, const uint8_t *bssid, int channel, const char *mqtt_broker, const char *mqtt_user, const char *mqtt_password, int mqtt_port, uint8_t prog_led);
   void setup();
   void loop();
 
