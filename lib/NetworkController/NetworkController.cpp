@@ -1,6 +1,6 @@
 #include <NetworkController.h>
 
-NetworkController::NetworkController(const char *ssid, const char *password, const char *gateway, const char *subnet, const char *dns, const char *ip, const uint8_t *bssid, int channel, const char *mqtt_broker, const char *mqtt_user, const char *mqtt_password, int mqtt_port, uint8_t prog_led)
+NetworkController::NetworkController(const char *ssid, const char *password, const char *gateway, const char *subnet, const char *dns, const char *ip, const uint8_t *bssid, int channel, const char *mqtt_broker, const char *mqtt_user, const char *mqtt_password, int mqtt_port, uint8_t prog_led, uint64_t chip_id)
 {
   this->ssid = ssid;
   this->password = password;
@@ -15,6 +15,7 @@ NetworkController::NetworkController(const char *ssid, const char *password, con
   this->mqtt_password = mqtt_password;
   this->mqtt_port = mqtt_port;
   this->prog_led = prog_led;
+  this->chip_id = chip_id;
 }
 
 void NetworkController::setup()
@@ -108,7 +109,10 @@ void NetworkController::connectMQTT()
 void NetworkController::publishButtonPressed(int pin)
 {
   String deviceType = DEVICETYPE;
-  String message = "{\"action\":\"press\",\"payload\":{\"deviceType\":\"" + deviceType + "\",\"pin\":" + String(pin) + "}}";
+  uint16_t chip = (uint16_t)(chip_id >> 32);
+  char ssid[23];
+  snprintf(ssid, 23, "%04X%08X", chip, (uint32_t)chip_id);
+  String message = "{\"action\":\"press\",\"payload\":{\"deviceType\":\"" + deviceType + "\",\"pin\":" + String(pin) + ",\"chipId\":\"" + ssid + "\"}}";
   while (!mqtt.publish("hue", message, true, 1))
   {
     Serial.print(".");

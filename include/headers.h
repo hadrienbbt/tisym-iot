@@ -64,3 +64,11 @@
 #ifndef PROG_LED
 #define PROG_LED 8
 #endif
+#ifndef CHIP_ID
+#ifdef ESP32
+#define CHIP_ID ESP.getEfuseMac()
+#endif
+#ifdef ESP8266
+#define CHIP_ID ESP.getChipId()
+#endif
+#endif
